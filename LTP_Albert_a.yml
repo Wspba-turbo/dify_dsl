@@ -1,0 +1,723 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: LTP_Albert_a
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/siliconflow:0.0.12@2ab1fcd77138b7ecdd707790aa1936d5c187fca547ebd165728237b0630c3a44
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/gemini:0.2.1@88c1b2c816ef2ea36fc411b35298a621b3260d34bc08bd9357772092728aadde
+kind: app
+version: 0.3.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions: []
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - remote_url
+      - local_file
+      enabled: true
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 1
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        sourceType: llm
+        targetType: answer
+      id: llm-answer
+      selected: false
+      source: llm
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1745663738202-source-1745670959469-target
+      selected: false
+      source: '1745663738202'
+      sourceHandle: source
+      target: '1745670959469'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: if-else
+      id: 1745670959469-source-1745669102906-target
+      selected: false
+      source: '1745670959469'
+      sourceHandle: source
+      target: '1745669102906'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1745669102906-false-17456765873050-target
+      selected: false
+      source: '1745669102906'
+      sourceHandle: 'false'
+      target: '17456765873050'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 17456765873050-source-1745676605867-target
+      selected: false
+      source: '17456765873050'
+      sourceHandle: source
+      target: '1745676605867'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: knowledge-retrieval
+      id: 1745669102906-true-1745654025124-target
+      selected: false
+      source: '1745669102906'
+      sourceHandle: 'true'
+      target: '1745654025124'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1745654025124-source-llm-target
+      selected: false
+      source: '1745654025124'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: tool
+      id: 1744964720777-source-1747896407995-target
+      source: '1744964720777'
+      sourceHandle: source
+      target: '1747896407995'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: llm
+      id: 1747896407995-source-1745663738202-target
+      source: '1747896407995'
+      sourceHandle: source
+      target: '1745663738202'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 54
+      id: '1744964720777'
+      position:
+        x: 30
+        y: 263
+      positionAbsolute:
+        x: 30
+        y: 263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1745654025124'
+          - result
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: gemini-2.5-flash-preview-04-17
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: 94223ba0-28c1-4757-b4b7-dbe2273e0163
+          role: system
+          text: "``` xml\n<prompt_template>\n  <role>\n    你的角色是：You are a helpful\
+            \ assistant and you are a large model developed by LTP Company, converted\
+            \ for internal employees of LTP Company, and your name is Albert.\n  \
+            \  你的功能是：为用户提供必要的帮助，并且 除非用于有特殊的语言需求，否则请使用与用户相同的语言回复。\n  </role>\n\n  <instructions>\n\
+            \    1.  仔细阅读用户输入，理解用户提出的问题或需求。\n    2.  根据你的知识和能力，为用户提供准确、有用的信息或解决方案。\n\
+            \    3.  始终以 Albert 的身份回复，记住你是由 LTP 公司开发的，专门为内部员工提供帮助的助手。\n    4.  除非用户明确要求使用其他语言，否则请使用与用户相同的语言回复。\n\
+            \    5.  如果用户的问题需要进行推理、计算或分析，请清晰地展示你的推理过程和步骤。\n    6.  如果用户的问题超出了你的能力范围，请礼貌地告知用户，并建议他们寻求其他帮助渠道。例如，可以建议他们联系相关部门的专家或查阅公司内部文档。\n\
+            \    7.  在回复中避免使用任何 XML 标签。你的回复应该像一个友好的助手与同事交流一样自然。\n    8.  保持回复的简洁明了，避免冗余的信息，并保证不要复述你的role。\n\
+            \    9.  在提供信息时，尽量提供相关的背景知识或上下文，以便用户更好地理解。\n    10. 如果用户的问题涉及敏感信息或公司机密，请谨慎处理，并确保你的回复符合公司的信息安全政策。\n\
+            \    11. 如果用户的问题比较模糊或不明确，可以主动向用户提问，以获取更详细的信息，从而更好地理解他们的需求。\n    12. 在回复结束后，可以礼貌地询问用户是否还有其他需要帮助的地方。\n\
+            \    13. 始终保持积极友好的态度，让用户感受到你的专业和热情。\n    14. 避免提供任何可能违反法律法规或公司政策的信息。\n\
+            \    15. 如果用户的问题涉及到技术问题，尽量提供详细的步骤和示例代码，以便用户能够更好地理解和操作。\n  </instructions>"
+        - id: b30dc8e0-dab5-451d-8f78-233446c8ea3e
+          role: user
+          text: '用户和bot之间的对话内容为：
+
+            {{#sys.query#}}'
+        - id: ea6fbc6f-747e-46c5-904a-6b6a4c7b5bd6
+          role: assistant
+          text: '在回答问题时可以使用以下内容作为你的知识。
+
+            <context>
+
+            {{#context#}}
+
+            </context>'
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - sys
+            - files
+          enabled: true
+      height: 90
+      id: llm
+      position:
+        x: 1850
+        y: 263
+      positionAbsolute:
+        x: 1850
+        y: 263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#llm.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 105
+      id: answer
+      position:
+        x: 2192.5714285714284
+        y: 263
+      positionAbsolute:
+        x: 2192.5714285714284
+        y: 263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - c0r11lYm2OKH9uyCwQVc3eHDd6snVS7uGJ96QikPDPkKqqoM9mVO+/G8vf/bYszZ
+        - o3pcEifym7ZhBZVC8hVl+7V3kU7dOrKP8USpujtFTEX2uogMV2mJpf8K6xXuP11L
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: false
+          reranking_mode: reranking_model
+          reranking_model:
+            model: BAAI/bge-reranker-v2-m3
+            provider: langgenius/siliconflow/siliconflow
+          score_threshold: 0.5
+          top_k: 10
+          weights:
+            keyword_setting:
+              keyword_weight: 0.3
+            vector_setting:
+              embedding_model_name: text-embedding-3-small
+              embedding_provider_name: langgenius/azure_openai/azure_openai
+              vector_weight: 0.7
+        query_variable_selector:
+        - '1745670959469'
+        - query
+        retrieval_mode: multiple
+        selected: false
+        title: 知识检索
+        type: knowledge-retrieval
+      height: 120
+      id: '1745654025124'
+      position:
+        x: 1546
+        y: 263
+      positionAbsolute:
+        x: 1546
+        y: 263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            json_schema: "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"\
+              need_rag\": {\n      \"type\": \"boolean\"\n    },\n    \"query\": {\n\
+              \      \"type\": \"string\"\n    }\n  },\n  \"required\": [\"need_rag\"\
+              , \"query\"]\n}"
+          mode: chat
+          name: gemini-2.0-flash-001
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: 35749962-a212-441d-af6c-0b317072ac10
+          role: system
+          text: '``` xml
+
+            <prompt>
+
+            <instructions>
+
+            请仔细阅读以下的用户和bot的对话历史，并根据用户的最新询问，判断是否需要从LTP公司知识库中进行知识检索。
+
+
+            **步骤：**
+
+
+            1.  **理解对话历史：** 理解用户和bot之间的对话内容。特别关注用户的最新一次询问，明确用户想要了解的信息。
+
+
+            2.  **判断是否需要知识检索：** 评估用户的最新询问是否与LTP公司的相关知识有关。如果用户的询问涉及LTP公司的产品、服务、历史、人员、组织结构、新闻事件、财务信息等，并且在此前的对话中没有查询过相关信息，则需要进行知识检索。如果用户的询问与LTP公司无关，或者可以通过常识或通用知识回答，则不需要进行知识检索。
+
+
+            3.  **生成检索query（如果需要）：** 如果判断需要进行知识检索，请生成一个能够提供准确检索结果的query。query应该简洁明了，能够准确表达用户的意图，并能够从LTP公司知识库中检索到相关信息。query可以使用中文也可以使用英文，建议使用英文。
+
+
+            **重要提示：**
+
+
+            *   请勿在输出中包含任何XML标签。
+
+            *   请确保生成的query能够准确反映用户的意图，并能够从LTP公司知识库中检索到相关信息。
+
+            *   如果用户的询问包含多个问题，请针对与LTP公司相关的问题生成query。
+
+            *   如果用户的询问比较模糊，请根据上下文推断用户的意图，并生成相应的query。
+
+            </instructions>
+
+            '
+        - id: 47c2b348-9cbf-4b2e-bcbe-7074a49993c5
+          role: user
+          text: '用户和bot之间的对话内容为：
+
+            {{#sys.query#}}'
+        selected: true
+        structured_output_enabled: false
+        title: LLM 2
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1745663738202'
+      position:
+        x: 634
+        y: 263
+      positionAbsolute:
+        x: 634
+        y: 263
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '='
+            id: bed2a8b9-f1cd-4c5b-ab27-31b0319af42b
+            value: '1'
+            varType: number
+            variable_selector:
+            - '1745670959469'
+            - need_rag
+          id: 'true'
+          logical_operator: or
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 126
+      id: '1745669102906'
+      position:
+        x: 1242
+        y: 263
+      positionAbsolute:
+        x: 1242
+        y: 263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "import json\n\ndef main(json_string: str) -> dict:\n    try:\n    \
+          \    data = json.loads(json_string)\n        need_rag = data.get(\"need_rag\"\
+          )\n        query = data.get(\"query\")\n        return {\"need_rag\": need_rag,\
+          \ \"query\": query}\n    except json.JSONDecodeError:\n        return {\"\
+          result\": \"Invalid JSON string\"}"
+        code_language: python3
+        desc: ''
+        outputs:
+          need_rag:
+            children: null
+            type: number
+          query:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - '1745663738202'
+          - text
+          variable: json_string
+      height: 54
+      id: '1745670959469'
+      position:
+        x: 938
+        y: 263
+      positionAbsolute:
+        x: 938
+        y: 263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: gemini-2.5-flash-preview-04-17
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: 94223ba0-28c1-4757-b4b7-dbe2273e0163
+          role: system
+          text: "``` xml\n<prompt_template>\n  <role>\n    你的角色是：You are a helpful\
+            \ assistant and you are a large model developed by LTP Company, converted\
+            \ for internal employees of LTP Company, and your name is Albert.\n  \
+            \  你的功能是：为用户提供必要的帮助，并且 除非用于有特殊的语言需求，否则请使用与用户相同的语言回复。\n  </role>\n\n  <instructions>\n\
+            \    1.  仔细阅读用户输入，理解用户提出的问题或需求。\n    2.  根据你的知识和能力，为用户提供准确、有用的信息或解决方案。\n\
+            \    3.  始终以 Albert 的身份回复，记住你是由 LTP 公司开发的，专门为内部员工提供帮助的助手。\n    4.  除非用户明确要求使用其他语言，否则请使用与用户相同的语言回复。\n\
+            \    5.  如果用户的问题需要进行推理、计算或分析，请清晰地展示你的推理过程和步骤。\n    6.  如果用户的问题超出了你的能力范围，请礼貌地告知用户，并建议他们寻求其他帮助渠道。例如，可以建议他们联系相关部门的专家或查阅公司内部文档。\n\
+            \    7.  在回复中避免使用任何 XML 标签。你的回复应该像一个友好的助手与同事交流一样自然。\n    8.  保持回复的简洁明了，避免冗余的信息。\n\
+            \    9.  在提供信息时，尽量提供相关的背景知识或上下文，以便用户更好地理解。\n    10. 如果用户的问题涉及敏感信息或公司机密，请谨慎处理，并确保你的回复符合公司的信息安全政策。\n\
+            \    11. 如果用户的问题比较模糊或不明确，可以主动向用户提问，以获取更详细的信息，从而更好地理解他们的需求。\n    12. 在回复结束后，可以礼貌地询问用户是否还有其他需要帮助的地方。\n\
+            \    13. 始终保持积极友好的态度，让用户感受到你的专业和热情。\n    14. 避免提供任何可能违反法律法规或公司政策的信息。\n\
+            \    15. 如果用户的问题涉及到技术问题，尽量提供详细的步骤和示例代码，以便用户能够更好地理解和操作。\n    16. 当前UTC+8的时间为{{#1747896407995.text#}}\n\
+            \  </instructions>"
+        - role: user
+          text: '用户和bot之间的对话内容为：
+
+            {{#sys.query#}}'
+        selected: false
+        title: LLM (1)
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - sys
+            - files
+          enabled: true
+      height: 90
+      id: '17456765873050'
+      position:
+        x: 1546
+        y: 423
+      positionAbsolute:
+        x: 1546
+        y: 423
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#17456765873050.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 2
+        type: answer
+        variables: []
+      height: 105
+      id: '1745676605867'
+      position:
+        x: 1850
+        y: 400.5
+      positionAbsolute:
+        x: 1850
+        y: 400.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: '%Y-%m-%d %H:%M:%S'
+          form: form
+          human_description:
+            en_US: Time format in strftime standard.
+            ja_JP: Time format in strftime standard.
+            pt_BR: Time format in strftime standard.
+            zh_Hans: strftime 标准的时间格式。
+          label:
+            en_US: Format
+            ja_JP: Format
+            pt_BR: Format
+            zh_Hans: 格式
+          llm_description: null
+          max: null
+          min: null
+          name: format
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: UTC
+          form: form
+          human_description:
+            en_US: Timezone
+            ja_JP: Timezone
+            pt_BR: Timezone
+            zh_Hans: 时区
+          label:
+            en_US: Timezone
+            ja_JP: Timezone
+            pt_BR: Timezone
+            zh_Hans: 时区
+          llm_description: null
+          max: null
+          min: null
+          name: timezone
+          options:
+          - label:
+              en_US: UTC
+              ja_JP: UTC
+              pt_BR: UTC
+              zh_Hans: UTC
+            value: UTC
+          - label:
+              en_US: America/New_York
+              ja_JP: America/New_York
+              pt_BR: America/New_York
+              zh_Hans: 美洲/纽约
+            value: America/New_York
+          - label:
+              en_US: America/Los_Angeles
+              ja_JP: America/Los_Angeles
+              pt_BR: America/Los_Angeles
+              zh_Hans: 美洲/洛杉矶
+            value: America/Los_Angeles
+          - label:
+              en_US: America/Chicago
+              ja_JP: America/Chicago
+              pt_BR: America/Chicago
+              zh_Hans: 美洲/芝加哥
+            value: America/Chicago
+          - label:
+              en_US: America/Sao_Paulo
+              ja_JP: America/Sao_Paulo
+              pt_BR: América/São Paulo
+              zh_Hans: 美洲/圣保罗
+            value: America/Sao_Paulo
+          - label:
+              en_US: Asia/Shanghai
+              ja_JP: Asia/Shanghai
+              pt_BR: Asia/Shanghai
+              zh_Hans: 亚洲/上海
+            value: Asia/Shanghai
+          - label:
+              en_US: Asia/Ho_Chi_Minh
+              ja_JP: Asia/Ho_Chi_Minh
+              pt_BR: Ásia/Ho Chi Minh
+              zh_Hans: 亚洲/胡志明市
+            value: Asia/Ho_Chi_Minh
+          - label:
+              en_US: Asia/Tokyo
+              ja_JP: Asia/Tokyo
+              pt_BR: Asia/Tokyo
+              zh_Hans: 亚洲/东京
+            value: Asia/Tokyo
+          - label:
+              en_US: Asia/Dubai
+              ja_JP: Asia/Dubai
+              pt_BR: Asia/Dubai
+              zh_Hans: 亚洲/迪拜
+            value: Asia/Dubai
+          - label:
+              en_US: Asia/Kolkata
+              ja_JP: Asia/Kolkata
+              pt_BR: Asia/Kolkata
+              zh_Hans: 亚洲/加尔各答
+            value: Asia/Kolkata
+          - label:
+              en_US: Asia/Seoul
+              ja_JP: Asia/Seoul
+              pt_BR: Asia/Seoul
+              zh_Hans: 亚洲/首尔
+            value: Asia/Seoul
+          - label:
+              en_US: Asia/Singapore
+              ja_JP: Asia/Singapore
+              pt_BR: Asia/Singapore
+              zh_Hans: 亚洲/新加坡
+            value: Asia/Singapore
+          - label:
+              en_US: Europe/London
+              ja_JP: Europe/London
+              pt_BR: Europe/London
+              zh_Hans: 欧洲/伦敦
+            value: Europe/London
+          - label:
+              en_US: Europe/Berlin
+              ja_JP: Europe/Berlin
+              pt_BR: Europe/Berlin
+              zh_Hans: 欧洲/柏林
+            value: Europe/Berlin
+          - label:
+              en_US: Europe/Moscow
+              ja_JP: Europe/Moscow
+              pt_BR: Europe/Moscow
+              zh_Hans: 欧洲/莫斯科
+            value: Europe/Moscow
+          - label:
+              en_US: Australia/Sydney
+              ja_JP: Australia/Sydney
+              pt_BR: Australia/Sydney
+              zh_Hans: 澳大利亚/悉尼
+            value: Australia/Sydney
+          - label:
+              en_US: Pacific/Auckland
+              ja_JP: Pacific/Auckland
+              pt_BR: Pacific/Auckland
+              zh_Hans: 太平洋/奥克兰
+            value: Pacific/Auckland
+          - label:
+              en_US: Africa/Cairo
+              ja_JP: Africa/Cairo
+              pt_BR: Africa/Cairo
+              zh_Hans: 非洲/开罗
+            value: Africa/Cairo
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        params:
+          format: ''
+          timezone: ''
+        provider_id: time
+        provider_name: time
+        provider_type: builtin
+        selected: false
+        title: 获取当前时间
+        tool_configurations:
+          format: '%Y-%m-%d %H:%M:%S'
+          timezone: Asia/Shanghai
+        tool_description: 一个用于获取当前时间的工具。
+        tool_label: 获取当前时间
+        tool_name: current_time
+        tool_parameters: {}
+        type: tool
+      height: 116
+      id: '1747896407995'
+      position:
+        x: 334
+        y: 263
+      positionAbsolute:
+        x: 334
+        y: 263
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 41.93700922893936
+      y: 223.7054348262715
+      zoom: 0.4618277687705131

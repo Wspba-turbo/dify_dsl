@@ -1,0 +1,788 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: LTP_Albert_b
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/gemini:0.2.1@88c1b2c816ef2ea36fc411b35298a621b3260d34bc08bd9357772092728aadde
+kind: app
+version: 0.3.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions: []
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - remote_url
+      - local_file
+      enabled: true
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 1
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1747481480432-source-1747481607930-target
+      selected: false
+      source: '1747481480432'
+      sourceHandle: source
+      target: '1747481607930'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1747644046528-source-1747651349459-target
+      selected: false
+      source: '1747644046528'
+      sourceHandle: source
+      target: '1747651349459'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: iteration
+      id: 1747651349459-source-1747651838695-target
+      selected: false
+      source: '1747651349459'
+      sourceHandle: source
+      target: '1747651838695'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: iteration
+        targetType: llm
+      id: 1747651838695-source-1747481480432-target
+      selected: false
+      source: '1747651838695'
+      sourceHandle: source
+      target: '1747481480432'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: tool
+      id: 1744964720777-source-1747653203726-target
+      selected: false
+      source: '1744964720777'
+      sourceHandle: source
+      target: '1747653203726'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: llm
+      id: 1747653203726-source-1747644046528-target
+      selected: false
+      source: '1747653203726'
+      sourceHandle: source
+      target: '1747644046528'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1747651838695'
+        sourceType: iteration-start
+        targetType: tool
+      id: 1747651838695start-source-1747983256281-target
+      source: 1747651838695start
+      sourceHandle: source
+      target: '1747983256281'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1747651838695'
+        sourceType: iteration-start
+        targetType: tool
+      id: 1747651838695start-source-1747983287784-target
+      source: 1747651838695start
+      sourceHandle: source
+      target: '1747983287784'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1747651838695'
+        sourceType: tool
+        targetType: code
+      id: 1747983256281-source-1747983326905-target
+      source: '1747983256281'
+      sourceHandle: source
+      target: '1747983326905'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1747651838695'
+        sourceType: tool
+        targetType: code
+      id: 1747983287784-source-1747983326905-target
+      source: '1747983287784'
+      sourceHandle: source
+      target: '1747983326905'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 54
+      id: '1744964720777'
+      position:
+        x: 30
+        y: 428
+      positionAbsolute:
+        x: 30
+        y: 428
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: gemini-2.5-flash-preview-04-17
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: c3497178-88ae-485c-a415-98a8179e702e
+          role: system
+          text: "  <role>\n    你的角色是：You are a helpful assistant and you are a large\
+            \ model developed by LTP Company, converted for internal employees of\
+            \ LTP Company, and your name is Albert.\n    你的功能是：为用户提供必要的帮助，并且 除非用于有特殊的语言需求，否则请使用与用户相同的语言回复。\n\
+            \  </role>\n\n请根据用户的问题和搜索结果，提供准确、简洁、有用的答案。请遵循以下步骤：\n\n1. **理解用户问题：** 仔细阅读用户提出的问题，明确用户想要了解什么，以及问题的核心是什么。识别问题中的关键词和关键概念。\n\
+            \n2. **分析搜索结果：** 认真阅读提供的搜索结果，理解每个结果的主要内容和观点。评估搜索结果的可靠性和相关性。注意搜索结果中可能存在的矛盾或不一致之处。\n\
+            \n3. **整合信息：** 将搜索结果中的信息进行整合，提取与用户问题相关的关键信息。避免直接复制粘贴搜索结果，而是要用自己的语言进行总结和概括。\n\
+            \n4. **组织答案：** 将整合后的信息组织成一个清晰、逻辑的答案。答案应该条理清晰，易于理解。可以使用段落、列表或其他格式来提高可读性。\n\
+            \n5. **提供准确的答案：** 确保答案的准确性。如果搜索结果中存在不确定或矛盾的信息，请在答案中明确指出，并说明可能存在的不同观点。\n\
+            \n6. **保持简洁：** 答案应该简洁明了，避免冗余和废话。只提供与用户问题直接相关的信息。\n\n7. **提供有用的答案：** 答案应该对用户有所帮助。除了提供基本信息外，还可以提供一些额外的见解、建议或资源，以帮助用户更好地理解问题。\n\
+            \n8. **避免猜测：** 如果搜索结果中没有明确的答案，请不要进行猜测或推断。可以明确告知用户，根据现有信息无法给出确切的答案。\n\n\
+            9. **避免重复搜索结果的内容：** 不要简单地重复搜索结果中的内容。应该用自己的语言进行总结和概括，并提供额外的价值。\n\n10. **输出格式：**\
+            \ 最终的答案应该是一个完整的句子或段落，可以直接回答用户的问题。不要包含任何XML标签。除非用于有特殊的语言需求，否则请使用与用户相同的语言回复。\n\
+            \n11. **内容引用：** 你的输出需要可溯源，在来自网络信息的总结后添加引用标号，并在最终的输出的最后添加引用来源。引用来源保持格式：\n\
+            '''\n引用来源：\n[1] https://xxxx.html\n[2] https://bbbb.com\n...\n'''\n请注意，引用的序号是逐渐递增的，不能出现重复的序号。\n\
+            \n\n以下是搜索的结果：\n{{#1747651838695.output#}}\n\n当前UTC+8的时间为：{{#1747653203726.text#}}"
+        - id: 79dfe604-f4a5-4801-9085-aa06484c6fb9
+          role: user
+          text: '用户和bot之间的对话内容为：
+
+            {{#sys.query#}}'
+        selected: false
+        title: LLM 4
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1747481480432'
+      position:
+        x: 2074
+        y: 428
+      positionAbsolute:
+        x: 2074
+        y: 428
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1747481480432.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 3
+        type: answer
+        variables: []
+      height: 105
+      id: '1747481607930'
+      position:
+        x: 2378
+        y: 428
+      positionAbsolute:
+        x: 2378
+        y: 428
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            json_schema: "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"\
+              queries\": {\n      \"type\": \"array\",\n      \"items\": {\n     \
+              \   \"type\": \"object\",\n        \"properties\": {\n          \"query\"\
+              : {\n            \"type\": \"string\"\n          }\n        },\n   \
+              \     \"required\": [\"query\"]\n      }\n    }\n  },\n  \"required\"\
+              : [\"queries\"]\n}"
+          mode: chat
+          name: gemini-2.5-flash-preview-04-17
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: fc041d04-5c25-490e-95e7-28004186ef3a
+          role: system
+          text: "您将扮演一个智能查询生成器。您的任务是根据用户的输入和历史聊天记录，判断用户想要查询的信息，并生成用于网络搜索的query。对于复杂的问题，您可以生成多个query，以更全面地覆盖用户的需求。\n\
+            \n请按照以下步骤操作：\n\n1. **理解用户输入和历史记录：** 仔细阅读用户的最新输入以及之前的聊天记录。理解用户的意图、背景信息和潜在需求。关注用户提出的问题、关键词和任何明确或隐含的要求。\n\
+            \n2. **识别核心信息需求：** 从用户输入中提取用户真正想要了解的核心信息。这可能需要您进行一些推理和判断。例如，用户可能会使用模糊的语言或省略一些信息，您需要根据上下文进行推断。\n\
+            \n3. **生成搜索Query：** 基于识别出的核心信息需求，生成一个或多个用于网络搜索的query。\n    *   **简洁性：**\
+            \ Query应该尽可能简洁明了，只包含必要的关键词。\n    *   **准确性：** Query应该准确地反映用户的意图，避免歧义。\n\
+            \    *   **完整性：** 对于复杂的问题，可以生成多个query，从不同的角度覆盖用户的需求。\n    *   **针对性：**\
+            \ 避免生成过于宽泛的query，尽量使query具有一定的针对性。\n\n5. **输出JSON格式：** 将生成的query以结构化的JSON格式输出。每个query作为一个独立的JSON对象，包含以下字段：\n\
+            \    *   `query`: 待搜索的关键信息（字符串）。\n\n6. **避免XML标签：** 您的输出应该只包含JSON格式的数据，不要包含任何XML标签。\n\
+            \n请注意以下几点：\n\n*   如果用户输入已经非常明确，可以直接将其作为query。\n*   如果用户输入包含多个问题，可以为每个问题生成一个或多个query。\n\
+            *   如果用户输入不明确，可以根据历史记录进行分析，提取用户的问题，并生成query\n*   如果是新闻类的搜素，请保证时效性，当前UTC+8的时间为{{#1747653203726.text#}}"
+        - role: user
+          text: '用户和bot之间的对话内容为：
+
+            {{#sys.query#}}'
+        selected: false
+        title: LLM 5
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1747644046528'
+      position:
+        x: 638
+        y: 428
+      positionAbsolute:
+        x: 638
+        y: 428
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "import json\n\ndef main(json_string: str) -> dict:\n    try:\n    \
+          \    data = json.loads(json_string)\n        queries = data.get(\"queries\"\
+          , [])\n        result_list = []\n        for query in queries:\n       \
+          \     result_list.append(query.get(\"query\"))\n        return {'result':\
+          \ result_list}\n    except json.JSONDecodeError:\n        return {'result':\
+          \ []}\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: array[string]
+        selected: false
+        title: 代码执行 2
+        type: code
+        variables:
+        - value_selector:
+          - '1747644046528'
+          - text
+          variable: json_string
+      height: 54
+      id: '1747651349459'
+      position:
+        x: 942
+        y: 428
+      positionAbsolute:
+        x: 942
+        y: 428
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        error_handle_mode: terminated
+        height: 521
+        is_parallel: false
+        iterator_selector:
+        - '1747651349459'
+        - result
+        output_selector:
+        - '1747983326905'
+        - result
+        output_type: array[string]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1747651838695start
+        title: 迭代
+        type: iteration
+        width: 768
+      height: 521
+      id: '1747651838695'
+      position:
+        x: 1246
+        y: 428
+      positionAbsolute:
+        x: 1246
+        y: 428
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 768
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1747651838695start
+      parentId: '1747651838695'
+      position:
+        x: 60
+        y: 159
+      positionAbsolute:
+        x: 1306
+        y: 587
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: '%Y-%m-%d %H:%M:%S'
+          form: form
+          human_description:
+            en_US: Time format in strftime standard.
+            ja_JP: Time format in strftime standard.
+            pt_BR: Time format in strftime standard.
+            zh_Hans: strftime 标准的时间格式。
+          label:
+            en_US: Format
+            ja_JP: Format
+            pt_BR: Format
+            zh_Hans: 格式
+          llm_description: null
+          max: null
+          min: null
+          name: format
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: UTC
+          form: form
+          human_description:
+            en_US: Timezone
+            ja_JP: Timezone
+            pt_BR: Timezone
+            zh_Hans: 时区
+          label:
+            en_US: Timezone
+            ja_JP: Timezone
+            pt_BR: Timezone
+            zh_Hans: 时区
+          llm_description: null
+          max: null
+          min: null
+          name: timezone
+          options:
+          - label:
+              en_US: UTC
+              ja_JP: UTC
+              pt_BR: UTC
+              zh_Hans: UTC
+            value: UTC
+          - label:
+              en_US: America/New_York
+              ja_JP: America/New_York
+              pt_BR: America/New_York
+              zh_Hans: 美洲/纽约
+            value: America/New_York
+          - label:
+              en_US: America/Los_Angeles
+              ja_JP: America/Los_Angeles
+              pt_BR: America/Los_Angeles
+              zh_Hans: 美洲/洛杉矶
+            value: America/Los_Angeles
+          - label:
+              en_US: America/Chicago
+              ja_JP: America/Chicago
+              pt_BR: America/Chicago
+              zh_Hans: 美洲/芝加哥
+            value: America/Chicago
+          - label:
+              en_US: America/Sao_Paulo
+              ja_JP: America/Sao_Paulo
+              pt_BR: América/São Paulo
+              zh_Hans: 美洲/圣保罗
+            value: America/Sao_Paulo
+          - label:
+              en_US: Asia/Shanghai
+              ja_JP: Asia/Shanghai
+              pt_BR: Asia/Shanghai
+              zh_Hans: 亚洲/上海
+            value: Asia/Shanghai
+          - label:
+              en_US: Asia/Ho_Chi_Minh
+              ja_JP: Asia/Ho_Chi_Minh
+              pt_BR: Ásia/Ho Chi Minh
+              zh_Hans: 亚洲/胡志明市
+            value: Asia/Ho_Chi_Minh
+          - label:
+              en_US: Asia/Tokyo
+              ja_JP: Asia/Tokyo
+              pt_BR: Asia/Tokyo
+              zh_Hans: 亚洲/东京
+            value: Asia/Tokyo
+          - label:
+              en_US: Asia/Dubai
+              ja_JP: Asia/Dubai
+              pt_BR: Asia/Dubai
+              zh_Hans: 亚洲/迪拜
+            value: Asia/Dubai
+          - label:
+              en_US: Asia/Kolkata
+              ja_JP: Asia/Kolkata
+              pt_BR: Asia/Kolkata
+              zh_Hans: 亚洲/加尔各答
+            value: Asia/Kolkata
+          - label:
+              en_US: Asia/Seoul
+              ja_JP: Asia/Seoul
+              pt_BR: Asia/Seoul
+              zh_Hans: 亚洲/首尔
+            value: Asia/Seoul
+          - label:
+              en_US: Asia/Singapore
+              ja_JP: Asia/Singapore
+              pt_BR: Asia/Singapore
+              zh_Hans: 亚洲/新加坡
+            value: Asia/Singapore
+          - label:
+              en_US: Europe/London
+              ja_JP: Europe/London
+              pt_BR: Europe/London
+              zh_Hans: 欧洲/伦敦
+            value: Europe/London
+          - label:
+              en_US: Europe/Berlin
+              ja_JP: Europe/Berlin
+              pt_BR: Europe/Berlin
+              zh_Hans: 欧洲/柏林
+            value: Europe/Berlin
+          - label:
+              en_US: Europe/Moscow
+              ja_JP: Europe/Moscow
+              pt_BR: Europe/Moscow
+              zh_Hans: 欧洲/莫斯科
+            value: Europe/Moscow
+          - label:
+              en_US: Australia/Sydney
+              ja_JP: Australia/Sydney
+              pt_BR: Australia/Sydney
+              zh_Hans: 澳大利亚/悉尼
+            value: Australia/Sydney
+          - label:
+              en_US: Pacific/Auckland
+              ja_JP: Pacific/Auckland
+              pt_BR: Pacific/Auckland
+              zh_Hans: 太平洋/奥克兰
+            value: Pacific/Auckland
+          - label:
+              en_US: Africa/Cairo
+              ja_JP: Africa/Cairo
+              pt_BR: Africa/Cairo
+              zh_Hans: 非洲/开罗
+            value: Africa/Cairo
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        params:
+          format: ''
+          timezone: ''
+        provider_id: time
+        provider_name: time
+        provider_type: builtin
+        selected: false
+        title: 获取当前时间
+        tool_configurations:
+          format: '%Y-%m-%d %H:%M:%S'
+          timezone: Asia/Shanghai
+        tool_description: 一个用于获取当前时间的工具。
+        tool_label: 获取当前时间
+        tool_name: current_time
+        tool_parameters: {}
+        type: tool
+      height: 116
+      id: '1747653203726'
+      position:
+        x: 334
+        y: 428
+      positionAbsolute:
+        x: 334
+        y: 428
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        is_team_authorization: true
+        iteration_id: '1747651838695'
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: ''
+            ja_JP: ''
+            pt_BR: ''
+            zh_Hans: ''
+          label:
+            en_US: input
+            ja_JP: input
+            pt_BR: input
+            zh_Hans: input
+          llm_description: ''
+          max: null
+          min: null
+          name: input
+          options: []
+          placeholder:
+            en_US: ''
+            ja_JP: ''
+            pt_BR: ''
+            zh_Hans: ''
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        params:
+          input: ''
+        provider_id: 122853b3-438c-4570-a69d-e65fb46b8198
+        provider_name: tavily_search
+        provider_type: workflow
+        selected: false
+        title: tavily_search
+        tool_configurations:
+          input: null
+        tool_description: ''
+        tool_label: tavily_search
+        tool_name: tavily_search_enhance
+        tool_parameters:
+          input:
+            type: mixed
+            value: '{{#1747651838695.item#}}'
+        type: tool
+      height: 90
+      id: '1747983256281'
+      parentId: '1747651838695'
+      position:
+        x: 171.578582832552
+        y: 127.16995210328162
+      positionAbsolute:
+        x: 1417.578582832552
+        y: 555.1699521032816
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        is_team_authorization: true
+        iteration_id: '1747651838695'
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: ''
+            ja_JP: ''
+            pt_BR: ''
+            zh_Hans: ''
+          label:
+            en_US: input
+            ja_JP: input
+            pt_BR: input
+            zh_Hans: input
+          llm_description: ''
+          max: null
+          min: null
+          name: input
+          options: []
+          placeholder:
+            en_US: ''
+            ja_JP: ''
+            pt_BR: ''
+            zh_Hans: ''
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        params:
+          input: ''
+        provider_id: b6a75070-28c1-4d0c-a21d-6d560a49320b
+        provider_name: brave_search
+        provider_type: workflow
+        selected: false
+        title: brave_search
+        tool_configurations:
+          input: null
+        tool_description: ''
+        tool_label: brave_search
+        tool_name: brave_search_enhance
+        tool_parameters:
+          input:
+            type: mixed
+            value: '{{#1747651838695.item#}}'
+        type: tool
+      height: 90
+      id: '1747983287784'
+      parentId: '1747651838695'
+      position:
+        x: 174.61001596557298
+        y: 357.7229620594784
+      positionAbsolute:
+        x: 1420.610015965573
+        y: 785.7229620594784
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        code: "import json\ndef main(arg1: str, arg2: str) -> dict:\n    data1 = json.loads(arg1)\n\
+          \    out1 = data1.get('output')\n    data2 = json.loads(arg2)\n    out2\
+          \ = data2.get('output')\n    return {\n    \"result\": '\\n\\n\\n'.join([\n\
+          \        '\\n'.join(map(str, out1)),\n        '\\n'.join(map(str, out2))\n\
+          \    ]),\n}\n\n"
+        code_language: python3
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1747651838695'
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行 2
+        type: code
+        variables:
+        - value_selector:
+          - '1747983256281'
+          - text
+          variable: arg1
+        - value_selector:
+          - '1747983287784'
+          - text
+          variable: arg2
+      height: 54
+      id: '1747983326905'
+      parentId: '1747651838695'
+      position:
+        x: 475.578582832552
+        y: 127.16995210328162
+      positionAbsolute:
+        x: 1721.578582832552
+        y: 555.1699521032816
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    viewport:
+      x: -834.9919861974868
+      y: -342.68823797424307
+      zoom: 1.0000000000000007
